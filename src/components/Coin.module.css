@@ -1,6 +1,12 @@
-.coin {
+.coin-button {
   border: none;
   border-radius: 50%;
-  background-color: black;
-  padding: 1rem;
+  background-color: var(--light-blue);
+  width: 5rem;
+  height: 5rem;
+  position: relative;
+}
+
+.active {
+  background-color: var(--orange);
 }

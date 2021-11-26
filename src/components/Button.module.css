@@ -1,0 +1,47 @@
+.big {
+  font-size: var(--heading-2);
+}
+
+.medium {
+  font-size: var(--heading-3);
+}
+
+.small {
+  font-size: var(--paragraph);
+}
+
+.big,
+.medium,
+.small {
+  padding: 1rem 1rem;
+  border-radius: var(--radius);
+}
+
+.primary-orange {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.primary-orange:hover {
+  background-color: var(--orange-hover);
+}
+
+.primary-blue {
+  color: var(--white);
+  background-color: var(--light-gray-blue);
+}
+
+.secondary-blue {
+  color: var(--dark-blue);
+}
+
+.primary-blue:hover,
+.secondary-blue:hover {
+  background-color: var(--blue);
+  color: white;
+}
+
+.active {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}

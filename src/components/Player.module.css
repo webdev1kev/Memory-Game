@@ -1,0 +1,37 @@
+.player {
+  background-color: var(--light-gray-blue);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  position: relative;
+}
+
+.player-number {
+  opacity: var(--text-opacity);
+}
+
+.player-score {
+  font-size: var(--heading-2);
+}
+
+.player::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--light-gray-blue);
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(45deg);
+}
+
+.current-turn {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: -2rem;
+  font-size: 1rem;
+}

@@ -1,0 +1,28 @@
+.modal-card {
+  background-color: var(--white);
+  padding: 3rem;
+  border-radius: var(--corner-radius);
+  width: 35vw;
+  text-align: center;
+
+  display: grid;
+  grid-template-columns: [start] repeat(2, 1fr) [end];
+  column-gap: 1rem;
+}
+
+.modal-card > p,
+.modal-card > button {
+  margin: 2rem 0;
+}
+
+.modal-card > p {
+  color: var(--light-blue);
+}
+
+.modal-card > * {
+  grid-column: start / end;
+}
+
+.modal-card > button {
+  grid-column: span 1;
+}

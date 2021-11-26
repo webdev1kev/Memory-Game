@@ -1,3 +1,6 @@
+import { useState } from "react";
+import CoinCover from "./CoinCover";
+
 import bugIcon from "./../assets/icons/bug.svg";
 import carIcon from "./../assets/icons/car.svg";
 import flaskIcon from "./../assets/icons/flask.svg";
@@ -11,9 +14,18 @@ import sunIcon from "./../assets/icons/sun.svg";
 import classes from "./Coin.module.css";
 
 const Coin = (props) => {
+  const [active, setActive] = useState(false);
+
+  const activeClass = active ? classes.active : "";
+
+  const clickHandler = () => {
+    setActive(true);
+  };
+
   return (
-    <button className={classes.coin}>
+    <button className={`${classes["coin-button"]} ${activeClass}`}>
       <img src={bugIcon} alt="Bug Icon" />
+      <CoinCover onClick={clickHandler} />
     </button>
   );
 };

@@ -1,18 +1,9 @@
 import { Fragment } from "react";
 
-import Coin from "./components/Coin";
-import Button from "./components/Button";
-import Player from "./components/Player";
-import Timer from "./components/Timer";
-import MoveCounter from "./components/MoveCounter";
-import SummaryModal from "./components/modals/SummaryModal";
+import HomePage from "./pages/HomePage";
 
 const App = () => {
-  return (
-    <Fragment>
-      <SummaryModal />
-    </Fragment>
-  );
+  return <HomePage />;
 };
 
 export default App;

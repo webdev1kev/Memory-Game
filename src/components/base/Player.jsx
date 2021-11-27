@@ -1,12 +1,14 @@
 import classes from "./Player.module.css";
 
+import Card from "./../Card";
+
 const Player = (props) => {
   return (
-    <div className={classes.player}>
+    <Card className={`${classes["player"]} ${props.className}`}>
       <p className={classes["player-number"]}>Player 1</p>
       <p className={classes["player-score"]}>5</p>
       <p className={classes["current-turn"]}>CURRENT TURN</p>
-    </div>
+    </Card>
   );
 };
 

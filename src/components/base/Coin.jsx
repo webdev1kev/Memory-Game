@@ -1,5 +1,4 @@
 import { useState } from "react";
-import CoinCover from "./CoinCover";
 
 import bugIcon from "./../assets/icons/bug.svg";
 import carIcon from "./../assets/icons/car.svg";
@@ -23,9 +22,11 @@ const Coin = (props) => {
   };
 
   return (
-    <button className={`${classes["coin-button"]} ${activeClass}`}>
+    <button
+      className={`${classes["coin-button"]} ${activeClass} ${props.className} `}
+    >
       <img src={bugIcon} alt="Bug Icon" />
-      <CoinCover onClick={clickHandler} />
+      {!clicked && <div onClick={clickHandler} className={classes.cover}></div>}
     </button>
   );
 };

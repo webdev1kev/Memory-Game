@@ -1,13 +1,13 @@
 import classes from "./Timer.module.css";
 
-import ComponentCard from "./UI/ComponentCard";
+import Card from "./../Card";
 
-const Timer = () => {
+const Timer = (props) => {
   return (
-    <ComponentCard>
+    <Card className={props.className}>
       <p>Time</p>
       <p>11:00</p>
-    </ComponentCard>
+    </Card>
   );
 };
 

@@ -18,7 +18,7 @@ const Button = (props) => {
   return (
     <button
       onClick={clickHandler}
-      className={`${size} ${color} ${activeClass}`}
+      className={`${size} ${color} ${activeClass} ${props.className}`}
     >
       {props.children}
     </button>

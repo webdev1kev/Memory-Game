@@ -1,0 +1,31 @@
+.grid {
+  background-color: var(--white) !important;
+
+  display: grid;
+  grid-template-columns: [start] repeat(4, 1fr) [end];
+  gap: var(--gap);
+}
+
+.grid > p {
+  grid-column: start / end;
+}
+
+.grid > button {
+  color: var(--white);
+}
+
+.theme-button {
+  grid-column: span 2;
+}
+
+.player-button {
+  grid-column: span 1;
+}
+
+.grid-button {
+  grid-column: span 2;
+}
+
+.start-button {
+  grid-column: span 4;
+}

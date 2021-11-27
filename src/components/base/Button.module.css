@@ -13,7 +13,7 @@
 .big,
 .medium,
 .small {
-  padding: 1rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: var(--radius);
 }
 
@@ -26,19 +26,13 @@
   background-color: var(--orange-hover);
 }
 
-.primary-blue {
-  color: var(--white);
+.secondary-blue {
   background-color: var(--light-gray-blue);
 }
 
-.secondary-blue {
-  color: var(--dark-blue);
-}
-
-.primary-blue:hover,
 .secondary-blue:hover {
+  color: var(--white);
   background-color: var(--blue);
-  color: white;
 }
 
 .active {

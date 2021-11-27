@@ -7,6 +7,19 @@
   position: relative;
 }
 
+.cover {
+  background-color: var(--dark-blue);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  border-radius: inherit;
+}
+
+.cover:hover {
+  background-color: var(--blue);
+}
+
 .active {
   background-color: var(--orange);
 }

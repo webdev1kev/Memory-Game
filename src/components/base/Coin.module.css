@@ -23,3 +23,8 @@
 .active {
   background-color: var(--orange);
 }
+
+.big {
+  width: 7rem;
+  height: 7rem;
+}

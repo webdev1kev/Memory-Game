@@ -4,7 +4,7 @@ import Card from "./../Card";
 
 const Timer = (props) => {
   return (
-    <Card className={props.className}>
+    <Card>
       <p>Time</p>
       <p>11:00</p>
     </Card>

@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 
-import HomePage from "./pages/HomePage";
+import Grid4 from "./components/frames/Grid4";
 
 const App = () => {
-  return <HomePage />;
+  return <Grid4 />;
 };
 
 export default App;

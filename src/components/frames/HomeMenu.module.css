@@ -1,9 +1,11 @@
 .grid {
   background-color: var(--white) !important;
+  width: 30rem;
 
   display: grid;
   grid-template-columns: [start] repeat(4, 1fr) [end];
   gap: var(--gap);
+  padding: 2rem !important;
 }
 
 .grid > p {
@@ -12,6 +14,7 @@
 
 .grid > button {
   color: var(--white);
+  width: 100%;
 }
 
 .theme-button {

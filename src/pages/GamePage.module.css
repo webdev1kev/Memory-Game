@@ -1,0 +1,33 @@
+.navbar {
+  grid-column: start / end;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-frame {
+  display: flex;
+  align-items: center;
+}
+
+.button-container {
+  width: 16rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.coin-container {
+  grid-column: start / end;
+
+  display: grid;
+  place-items: center;
+}
+
+.player-container {
+  grid-column: start / end;
+
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}

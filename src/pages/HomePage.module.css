@@ -2,13 +2,18 @@
   background-color: var(--dark-blue);
 }
 
-.grid img {
+.grid {
+  place-items: center;
+}
+
+.homemenu-container {
   grid-column: start / end;
-  place-self: end center;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 .menu {
-  grid-column: col-start 4 / col-end 9;
-  align-self: center;
-  padding: 3rem;
+  margin-top: 3rem;
 }

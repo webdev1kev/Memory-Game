@@ -13,6 +13,7 @@ const Button = (props) => {
   const clickHandler = () => {
     if (!active) return setActive(true);
     setActive(false);
+    props.onClick();
   };
 
   return (

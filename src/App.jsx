@@ -1,9 +1,17 @@
 import { Fragment } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import Grid4 from "./components/frames/Grid4";
+import GamePage from "./pages/GamePage";
+import HomePage from "./pages/HomePage";
+import SummaryModal from "./components/frames/SummaryModal";
 
 const App = () => {
-  return <Grid4 />;
+  return (
+    <Routes>
+      <Route index element={<HomePage />} />
+      <Route path="game" element={<GamePage />} />
+    </Routes>
+  );
 };
 
 export default App;

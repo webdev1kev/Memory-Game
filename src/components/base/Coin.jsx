@@ -26,12 +26,12 @@ const Coin = (props) => {
   return (
     <li>
       <button
-        className={`${classes["coin-button"]} ${props.className} ${activeClass} ${sizeClass}`}
+        className={`${classes["coin-button"]} ${props.className} ${activeClass} ${classes[sizeClass]}`}
       >
         <img src={bugIcon} alt="Bug Icon" />
-        {!clicked && (
+        {/* {!clicked && (
           <div onClick={clickHandler} className={classes.cover}></div>
-        )}
+        )} */}
       </button>
     </li>
   );

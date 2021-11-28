@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 import classes from "./HomeMenu.module.css";
 
 import Card from "../Card";
 import Button from "./../base/Button";
 
 const HomeMenu = (props) => {
+  let navigate = useNavigate();
   return (
     <Card className={`${props.className} ${classes.grid}`}>
       <p>Select Theme</p>
@@ -65,7 +68,9 @@ const HomeMenu = (props) => {
       >
         6 X 6
       </Button>
+
       <Button
+        onClick={() => navigate("/game")}
         className={classes["start-button"]}
         size="big"
         color="primary-orange"

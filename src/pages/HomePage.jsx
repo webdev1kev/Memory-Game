@@ -7,8 +7,12 @@ const HomePage = () => {
   return (
     <main className={classes.homepage}>
       <section className={classes.grid}>
-        <img src={logoWhite} alt="Memory Logo" />
-        <HomeMenu className={classes.menu} />
+        <div className={classes["homemenu-container"]}>
+          <div className={classes["logo-frame"]}>
+            <img src={logoWhite} alt="Memory Logo" />
+          </div>
+          <HomeMenu className={classes.menu} />
+        </div>
       </section>
     </main>
   );

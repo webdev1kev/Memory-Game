@@ -5,30 +5,27 @@
   display: grid;
   grid-template-columns: [start] repeat(4, 1fr) [end];
   gap: var(--gap);
-  padding: 2rem !important;
 }
 
 .grid > p {
   grid-column: start / end;
 }
 
-.grid > button {
-  color: var(--white);
-  width: 100%;
+.theme-buttons {
+  grid-column: start / end;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.theme-button {
-  grid-column: span 2;
+.player-buttons {
+  grid-column: start / end;
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.player-button {
-  grid-column: span 1;
-}
-
-.grid-button {
-  grid-column: span 2;
+.grid-buttons {
+  grid-column: start / end;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .start-button {
-  grid-column: span 4;
+  grid-column: start / end;
 }

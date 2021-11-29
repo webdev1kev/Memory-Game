@@ -1,5 +1,5 @@
-import { useState } from "react";
-import useClassBundler from "../../hooks/useClassBundler";
+import { useState, useContext } from "react";
+import { GameContext } from "../../context/gameState";
 
 import bugIcon from "./../../assets/icons/bug.svg";
 import carIcon from "./../../assets/icons/car.svg";
@@ -13,25 +13,66 @@ import sunIcon from "./../../assets/icons/sun.svg";
 
 import classes from "./Coin.module.css";
 
+const selectedCoins = [];
+
+const compareCoins = (coinsArray) => {
+  const [coin1, coin2] = coinsArray;
+
+  if (coin1.name === coin2.name) {
+    coin1.matched(true);
+    coin2.matched(true);
+    selectedCoins.splice(0);
+    return true;
+  }
+
+  setTimeout(() => {
+    coin1.clicked(false);
+    coin2.clicked(false);
+  }, 1000);
+
+  selectedCoins.splice(0);
+  return false;
+};
+
 const Coin = (props) => {
   const [clicked, setClicked] = useState(false);
+  const [matched, setMatched] = useState(false);
 
-  const activeClass = clicked ? classes.active : "";
+  const updatePlayerScore = useContext(GameContext).updatePlayerScore;
+
+  const matchedClass = matched ? classes.matched : "";
+
   const sizeClass = props.size;
 
   const clickHandler = () => {
+    selectedCoins.push({
+      name: props.name,
+      clicked: setClicked,
+      matched: setMatched,
+    });
     setClicked(true);
+
+    if (selectedCoins.length === 2) {
+      const isMatch = compareCoins(selectedCoins);
+      if (isMatch) {
+        updatePlayerScore();
+      }
+    }
   };
 
   return (
     <li>
       <button
-        className={`${classes["coin-button"]} ${props.className} ${activeClass} ${classes[sizeClass]}`}
+        className={`${classes["coin-button"]} ${props.className} ${classes[sizeClass]} ${matchedClass}`}
       >
-        <img src={bugIcon} alt="Bug Icon" />
-        {/* {!clicked && (
+        <div className={classes["icon-frame"]}>
+          <img src={props.icon} alt="" />
+        </div>
+
+        {!clicked && (
           <div onClick={clickHandler} className={classes.cover}></div>
-        )} */}
+        )}
+        {props.children}
       </button>
     </li>
   );

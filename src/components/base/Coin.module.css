@@ -1,10 +1,17 @@
+.icon-frame {
+  display: grid;
+  place-items: center;
+}
+
 .coin-button {
   border: none;
   border-radius: 50%;
-  background-color: var(--light-blue);
+  background-color: var(--orange);
+  color: var(--white);
   width: 5rem;
   height: 5rem;
   position: relative;
+  font-size: 2.5rem;
 }
 
 .cover {
@@ -14,14 +21,16 @@
   position: absolute;
   top: 0;
   border-radius: inherit;
+  opacity: 0.5;
 }
 
 .cover:hover {
   background-color: var(--blue);
 }
 
-.active {
-  background-color: var(--orange);
+.matched {
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
 }
 
 .big {

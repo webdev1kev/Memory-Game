@@ -44,7 +44,7 @@
 
 section {
   min-height: 100vh;
-  margin: 0 100px;
+  margin: 0 5%;
   display: grid;
   grid-template-columns:
     [start] repeat(12, [col-start] 1fr [col-end])
@@ -90,4 +90,15 @@ button {
 
 .number-big {
   font-size: 3.5rem;
+}
+
+/* ACTIVE CLASSES */
+
+.active-coin {
+  background-color: var(--orange);
+}
+
+.active-button {
+  background-color: var(--dark-blue);
+  color: var(--white);
 }

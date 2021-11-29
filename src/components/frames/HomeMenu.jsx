@@ -1,76 +1,69 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { GameContext } from "../../context/gameState";
 
 import classes from "./HomeMenu.module.css";
 
 import Card from "../Card";
 import Button from "./../base/Button";
+import ButtonGroup from "./../frames/ButtonGroup";
+
+const buttonGenerator = (buttonNamesArray, onClick) => {
+  const buttons = [];
+  buttonNamesArray.map((name) => {
+    buttons.push({
+      name,
+      onClick,
+    });
+  });
+
+  return buttons;
+};
 
 const HomeMenu = (props) => {
   let navigate = useNavigate();
+
+  const setTheme = useContext(GameContext).setTheme;
+  const setPlayers = useContext(GameContext).setPlayers;
+  const setGridSize = useContext(GameContext).setGridSize;
+  const setGameStarted = useContext(GameContext).setGameStarted;
+
+  const themeButtons = buttonGenerator(["Numbers", "Symbol"], setTheme);
+  const playerButtons = buttonGenerator([1, 2, 3, 4], setPlayers);
+  const gridSizeButtons = buttonGenerator(["4X4", "6X6"], setGridSize);
+
   return (
     <Card className={`${props.className} ${classes.grid}`}>
       <p>Select Theme</p>
-      <Button
-        className={classes["theme-button"]}
+      <ButtonGroup
+        className={classes["theme-buttons"]}
         size="medium"
         color="secondary-blue"
-      >
-        Numbers
-      </Button>
-      <Button
-        className={classes["theme-button"]}
-        size="medium"
-        color="secondary-blue"
-      >
-        Icons
-      </Button>
+        buttons={themeButtons}
+        initial={"Numbers"}
+      />
       <p>Number of Players</p>
-      <Button
-        className={classes["player-button"]}
+      <ButtonGroup
+        className={classes["player-buttons"]}
         size="medium"
         color="secondary-blue"
-      >
-        1
-      </Button>
-      <Button
-        className={classes["player-button"]}
-        size="medium"
-        color="secondary-blue"
-      >
-        2
-      </Button>
-      <Button
-        className={classes["player-button"]}
-        size="medium"
-        color="secondary-blue"
-      >
-        3
-      </Button>
-      <Button
-        className={classes["player-button"]}
-        size="medium"
-        color="secondary-blue"
-      >
-        4
-      </Button>
+        buttons={playerButtons}
+        initial={1}
+      />
       <p>Grid Size</p>
-      <Button
-        className={classes["grid-button"]}
+      <ButtonGroup
+        className={classes["grid-buttons"]}
         size="medium"
         color="secondary-blue"
-      >
-        4 X 4
-      </Button>
-      <Button
-        className={classes["grid-button"]}
-        size="medium"
-        color="secondary-blue"
-      >
-        6 X 6
-      </Button>
+        buttons={gridSizeButtons}
+        initial={"4X4"}
+      />
 
       <Button
-        onClick={() => navigate("/game")}
+        onClick={() => {
+          setGameStarted();
+          navigate("/game");
+        }}
         className={classes["start-button"]}
         size="big"
         color="primary-orange"

@@ -37,6 +37,7 @@ const compareCoins = (coinsArray) => {
 
 const Coin = (props) => {
   const gameActions = useContext(GameContext).gameActions;
+  const gameState = useContext(GameContext).gameState;
   const [clicked, setClicked] = useState(false);
   const [matched, setMatched] = useState(false);
 
@@ -48,7 +49,10 @@ const Coin = (props) => {
     selectedCoins.push({ name: props.name, setClicked, setMatched });
 
     if (selectedCoins.length === 2) {
-      if (compareCoins(selectedCoins)) {
+      if (gameState.isSinglePlayer) {
+      }
+
+      if (compareCoins(selectedCoins) && !gameState.isSinglePlayer) {
         gameActions.updatePlayerScore();
       } else {
         gameActions.nextPlayer();

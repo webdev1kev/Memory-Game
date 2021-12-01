@@ -29,6 +29,10 @@ const Timer = (props) => {
       timer.seconds = timer.seconds + 1;
       setTimer({ ...timer });
     }, 1000);
+
+    return () => {
+      clearTimeout(timeoutID);
+    };
   }, [timer]);
 
   return (

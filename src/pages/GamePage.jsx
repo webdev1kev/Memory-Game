@@ -1,6 +1,7 @@
 import { useContext } from "react";
 
 import { GameContext } from "../context/gameState";
+import { useNavigate } from "react-router-dom";
 
 import classes from "./GamePage.module.css";
 
@@ -13,6 +14,7 @@ import Timer from "../components/base/Timer";
 import MoveCounter from "../components/base/MoveCounter";
 
 const GamePage = () => {
+  const navigate = useNavigate();
   const gameState = useContext(GameContext).gameState;
   const gameActions = useContext(GameContext).gameActions;
 
@@ -49,7 +51,14 @@ const GamePage = () => {
             >
               Restart
             </Button>
-            <Button size={"medium"} color={"secondary-blue"} onClick={() => {}}>
+            <Button
+              size={"medium"}
+              color={"secondary-blue"}
+              onClick={() => {
+                gameActions.newGame();
+                navigate("/");
+              }}
+            >
               New Game
             </Button>
           </div>

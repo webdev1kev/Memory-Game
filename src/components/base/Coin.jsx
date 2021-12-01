@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import { GameContext } from "../../context/gameState";
 
@@ -14,48 +14,35 @@ import sunIcon from "./../../assets/icons/sun.svg";
 
 import classes from "./Coin.module.css";
 
-const selectedCoins = [];
-
-const compareCoins = (coinsArray) => {
-  const [coin1, coin2] = coinsArray;
-
-  if (coin1.name === coin2.name) {
-    coin1.setMatched(true);
-    coin2.setMatched(true);
-    selectedCoins.splice(0);
-    return true;
-  }
-
-  setTimeout(() => {
-    coin1.setClicked(false);
-    coin2.setClicked(false);
-    selectedCoins.splice(0);
-  }, 700);
-
-  return false;
-};
+let selectedCoins = [];
 
 const Coin = (props) => {
-  const gameActions = useContext(GameContext).gameActions;
-  const gameState = useContext(GameContext).gameState;
   const [clicked, setClicked] = useState(false);
   const [matched, setMatched] = useState(false);
+  const gameState = useContext(GameContext).gameState;
 
-  const sizeClass = props.size;
+  const sizeClass = props.sizeClass ? "big" : "";
   const matchedClass = matched ? classes.matched : "";
+
+  if (gameState.reset && clicked) {
+    setClicked(false);
+  }
 
   const clickHandler = () => {
     setClicked(true);
+
     selectedCoins.push({ name: props.name, setClicked, setMatched });
 
     if (selectedCoins.length === 2) {
-      if (gameState.isSinglePlayer) {
-      }
-
-      if (compareCoins(selectedCoins) && !gameState.isSinglePlayer) {
-        gameActions.updatePlayerScore();
+      const [coin1, coin2] = selectedCoins;
+      if (coin1.name === coin2.name) {
+        coin1.setMatched(true);
+        coin2.setMatched(true);
+        selectedCoins = [];
       } else {
-        gameActions.nextPlayer();
+        coin1.setClicked(false);
+        coin2.setClicked(false);
+        selectedCoins = [];
       }
     }
   };
@@ -72,7 +59,6 @@ const Coin = (props) => {
         {!clicked && (
           <div onClick={clickHandler} className={classes.cover}></div>
         )}
-
         {props.children}
       </button>
     </li>

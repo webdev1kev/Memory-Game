@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import generateGrid from "../helpers/generateGrid";
 
 const initialState = {
@@ -25,7 +25,9 @@ const initialState = {
   scoreOfPlayer: { 1: 0, 2: 0, 3: 0, 4: 0 },
   totalPairsLeft: 0,
   isSinglePlayer: true,
+  reset: false,
   moves: 0,
+  matchedCoins: [],
 };
 
 export const GameContext = createContext({});
@@ -65,6 +67,7 @@ export default (props) => {
       const gridSize = state.gridSize === "4X4" ? 8 : 18;
       state.totalPairsLeft = gridSize;
       state.currentGameGrid = generateGrid(gridTheme, gridSize);
+
       return { ...state };
     });
   };
@@ -101,13 +104,26 @@ export default (props) => {
     });
   };
 
-  const restartGame = () => {
+  const reset = () => {
+    setGameState((state) => {
+      state.reset = true;
+      return { ...state };
+    });
     loadGameGrid();
   };
 
   const newGame = () => {
     setGameState({ ...initialState });
   };
+
+  useEffect(() => {
+    if (gameState.reset) {
+      setGameState((state) => {
+        state.reset = false;
+        return { ...state };
+      });
+    }
+  }, [gameState.reset]);
 
   return (
     <GameContext.Provider
@@ -122,8 +138,9 @@ export default (props) => {
         gameActions: {
           nextPlayer,
           updatePlayerScore,
-          restartGame,
+          reset,
           newGame,
+          updateMovesCounter,
         },
       }}
     >

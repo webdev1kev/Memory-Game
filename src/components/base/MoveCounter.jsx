@@ -8,7 +8,7 @@ const MoveCounter = (props) => {
   return (
     <ComponentCard className={classes.moves}>
       <p>Moves</p>
-      <p></p>
+      <p>{props.moves}</p>
     </ComponentCard>
   );
 };

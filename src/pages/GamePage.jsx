@@ -17,6 +17,7 @@ const GamePage = () => {
   const navigate = useNavigate();
   const gameState = useContext(GameContext).gameState;
   const gameActions = useContext(GameContext).gameActions;
+  const menuActions = useContext(GameContext).menuActions;
 
   const players = [];
 
@@ -33,6 +34,7 @@ const GamePage = () => {
     );
   }
 
+  console.log(gameState.reset);
   return (
     <main className={classes.gamepage}>
       <section className={classes.grid}>
@@ -46,7 +48,7 @@ const GamePage = () => {
               size={"medium"}
               color={"primary-orange"}
               onClick={() => {
-                gameActions.restartGame();
+                gameActions.reset();
               }}
             >
               Restart
@@ -74,7 +76,7 @@ const GamePage = () => {
 
         <div className={classes["player-container"]}>
           <Timer />
-          <MoveCounter />
+          <MoveCounter moves={gameState.moves} />
         </div>
       </section>
     </main>

@@ -27,7 +27,6 @@ const Grid = (props) => {
             icon={showIcon(coin)}
             size={coinSize}
             name={coin}
-            onClick={props.onClick}
           ></Coin>
         );
       })}

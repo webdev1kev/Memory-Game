@@ -1,1 +1,6 @@
-
+.moves {
+  width: max(20%, 200px);
+  display: flex;
+  justify-content: space-between;
+  height: max-content;
+}

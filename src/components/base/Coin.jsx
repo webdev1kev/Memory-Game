@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+
 import { GameContext } from "../../context/gameState";
 
 import bugIcon from "./../../assets/icons/bug.svg";
@@ -19,43 +20,38 @@ const compareCoins = (coinsArray) => {
   const [coin1, coin2] = coinsArray;
 
   if (coin1.name === coin2.name) {
-    coin1.matched(true);
-    coin2.matched(true);
+    coin1.setMatched(true);
+    coin2.setMatched(true);
     selectedCoins.splice(0);
     return true;
   }
 
   setTimeout(() => {
-    coin1.clicked(false);
-    coin2.clicked(false);
-  }, 1000);
+    coin1.setClicked(false);
+    coin2.setClicked(false);
+    selectedCoins.splice(0);
+  }, 700);
 
-  selectedCoins.splice(0);
   return false;
 };
 
 const Coin = (props) => {
+  const gameActions = useContext(GameContext).gameActions;
   const [clicked, setClicked] = useState(false);
   const [matched, setMatched] = useState(false);
 
-  const updatePlayerScore = useContext(GameContext).updatePlayerScore;
-
+  const sizeClass = props.size;
   const matchedClass = matched ? classes.matched : "";
 
-  const sizeClass = props.size;
-
   const clickHandler = () => {
-    selectedCoins.push({
-      name: props.name,
-      clicked: setClicked,
-      matched: setMatched,
-    });
     setClicked(true);
+    selectedCoins.push({ name: props.name, setClicked, setMatched });
 
     if (selectedCoins.length === 2) {
-      const isMatch = compareCoins(selectedCoins);
-      if (isMatch) {
-        updatePlayerScore();
+      if (compareCoins(selectedCoins)) {
+        gameActions.updatePlayerScore();
+      } else {
+        gameActions.nextPlayer();
       }
     }
   };
@@ -72,6 +68,7 @@ const Coin = (props) => {
         {!clicked && (
           <div onClick={clickHandler} className={classes.cover}></div>
         )}
+
         {props.children}
       </button>
     </li>

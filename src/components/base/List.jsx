@@ -1,33 +1,33 @@
 import classes from "./List.module.css";
 
-import Card from "./../Card";
+import ComponentCard from "./../ComponentCard";
 
 const List = (props) => {
   return (
     <ul className={`${classes.list} ${props.className}`}>
       <li>
-        <Card>
+        <ComponentCard>
           <p>Player</p>
           <p>3</p>
-        </Card>
+        </ComponentCard>
       </li>
       <li>
-        <Card>
+        <ComponentCard>
           <p>Player</p>
           <p>3</p>
-        </Card>
+        </ComponentCard>
       </li>
       <li>
-        <Card>
+        <ComponentCard>
           <p>Player</p>
           <p>3</p>
-        </Card>
+        </ComponentCard>
       </li>
       <li>
-        <Card>
+        <ComponentCard>
           <p>Player</p>
           <p>3</p>
-        </Card>
+        </ComponentCard>
       </li>
     </ul>
   );

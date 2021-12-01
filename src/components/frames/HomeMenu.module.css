@@ -1,6 +1,8 @@
 .grid {
   background-color: var(--white) !important;
   width: 30rem;
+  border-radius: var(--corner-radius);
+  padding: 2rem;
 
   display: grid;
   grid-template-columns: [start] repeat(4, 1fr) [end];

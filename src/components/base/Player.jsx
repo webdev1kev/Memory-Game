@@ -1,23 +1,18 @@
-import { useContext } from "react";
-import { GameContext } from "../../context/gameState";
-
 import classes from "./Player.module.css";
 
-import Card from "../Card";
+import ComponentCard from "../ComponentCard";
 
 const Player = (props) => {
   const activeClass = props.active ? classes.active : "";
 
-  const gameState = useContext(GameContext).gameState;
-
   return (
-    <Card className={`${classes["player"]} ${props.className} ${activeClass}`}>
-      <p className={classes["player-number"]}>Player 1</p>
-      <p className={classes["player-score"]}>
-        {gameState.scoreForPlayer[props.player]}
-      </p>
+    <ComponentCard
+      className={`${classes["player"]} ${props.className} ${activeClass}`}
+    >
+      <p className={classes["player-number"]}>Player {`${props.player}`}</p>
+      <p className={classes["player-score"]}>{props.score}</p>
       {activeClass && <p className={classes["current-turn"]}>CURRENT TURN</p>}
-    </Card>
+    </ComponentCard>
   );
 };
 

@@ -4,7 +4,6 @@ import { GameContext } from "../../context/gameState";
 
 import classes from "./HomeMenu.module.css";
 
-import Card from "../Card";
 import Button from "./../base/Button";
 import ButtonGroup from "./../frames/ButtonGroup";
 
@@ -20,20 +19,28 @@ const buttonGenerator = (buttonNamesArray, onClick) => {
   return buttons;
 };
 
-const HomeMenu = (props) => {
+const HomeMenu = () => {
   let navigate = useNavigate();
+  const gameState = useContext(GameContext).gameState;
+  const menuActions = useContext(GameContext).menuActions;
 
-  const setTheme = useContext(GameContext).setTheme;
-  const setPlayers = useContext(GameContext).setPlayers;
-  const setGridSize = useContext(GameContext).setGridSize;
-  const setGameStarted = useContext(GameContext).setGameStarted;
+  const themeButtons = buttonGenerator(
+    ["Numbers", "Symbols"],
+    menuActions.setTheme
+  );
+  const playerButtons = buttonGenerator(
+    [1, 2, 3, 4],
+    menuActions.setNumberOfPlayers
+  );
+  const gridSizeButtons = buttonGenerator(
+    ["4X4", "6X6"],
+    menuActions.setGridSize
+  );
 
-  const themeButtons = buttonGenerator(["Numbers", "Symbol"], setTheme);
-  const playerButtons = buttonGenerator([1, 2, 3, 4], setPlayers);
-  const gridSizeButtons = buttonGenerator(["4X4", "6X6"], setGridSize);
+  console.log(gameState);
 
   return (
-    <Card className={`${props.className} ${classes.grid}`}>
+    <div className={classes.grid}>
       <p>Select Theme</p>
       <ButtonGroup
         className={classes["theme-buttons"]}
@@ -61,8 +68,8 @@ const HomeMenu = (props) => {
 
       <Button
         onClick={() => {
-          setGameStarted();
-          navigate("/game");
+          menuActions.loadGameGrid();
+          navigate("/game", { replace: true });
         }}
         className={classes["start-button"]}
         size="big"
@@ -70,7 +77,7 @@ const HomeMenu = (props) => {
       >
         Start Game
       </Button>
-    </Card>
+    </div>
   );
 };
 

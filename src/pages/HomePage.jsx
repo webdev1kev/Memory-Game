@@ -2,6 +2,7 @@ import HomeMenu from "./../components/frames/HomeMenu";
 import classes from "./HomePage.module.css";
 
 import logoWhite from "./../assets/logo-white.svg";
+import Timer from "../components/base/Timer";
 
 const HomePage = () => {
   return (

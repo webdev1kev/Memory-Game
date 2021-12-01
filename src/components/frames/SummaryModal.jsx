@@ -9,7 +9,7 @@ import Button from "./../base/Button";
 const SummaryModal = () => {
   return (
     <Backdrop>
-      <Card className={classes["modal-card"]}>
+      <div className={classes["modal-card"]}>
         <h1>Player 1 Wins!</h1>
         <p>Game over! Here are the results...</p>
         <List />
@@ -19,7 +19,7 @@ const SummaryModal = () => {
         <Button size="medium" color="secondary-blue">
           Setup New Game
         </Button>
-      </Card>
+      </div>
     </Backdrop>
   );
 };

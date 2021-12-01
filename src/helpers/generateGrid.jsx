@@ -1,4 +1,4 @@
-const generateRandomPairsArray = (array, amount) => {
+const generateGrid = (array, amount) => {
   const randomNumberRange = (max, min) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
@@ -34,4 +34,4 @@ const generateRandomPairsArray = (array, amount) => {
   return pairs;
 };
 
-export default generateRandomPairsArray;
+export default generateGrid;

@@ -1,13 +1,15 @@
+import { useContext } from "react";
+
 import classes from "./MoveCounter.module.css";
 
-import Card from "../Card";
+import ComponentCard from "../ComponentCard";
 
 const MoveCounter = (props) => {
   return (
-    <Card className={props.ClassName}>
+    <ComponentCard className={classes.moves}>
       <p>Moves</p>
-      <p>5</p>
-    </Card>
+      <p></p>
+    </ComponentCard>
   );
 };
 

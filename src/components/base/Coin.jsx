@@ -1,6 +1,8 @@
 import { useState, useContext, useEffect } from "react";
 
 import { GameContext } from "../../context/gameState";
+import compareCoins from "../../helpers/compareCoins";
+import { selectedCoins } from "../../helpers/compareCoins";
 
 import bugIcon from "./../../assets/icons/bug.svg";
 import carIcon from "./../../assets/icons/car.svg";
@@ -14,18 +16,18 @@ import sunIcon from "./../../assets/icons/sun.svg";
 
 import classes from "./Coin.module.css";
 
-let selectedCoins = [];
-
 const Coin = (props) => {
   const [clicked, setClicked] = useState(false);
   const [matched, setMatched] = useState(false);
   const gameState = useContext(GameContext).gameState;
+  const gameActions = useContext(GameContext).updateMovesCounter;
 
   const sizeClass = props.sizeClass ? "big" : "";
   const matchedClass = matched ? classes.matched : "";
 
   if (gameState.reset && clicked) {
     setClicked(false);
+    setMatched(false);
   }
 
   const clickHandler = () => {
@@ -34,16 +36,7 @@ const Coin = (props) => {
     selectedCoins.push({ name: props.name, setClicked, setMatched });
 
     if (selectedCoins.length === 2) {
-      const [coin1, coin2] = selectedCoins;
-      if (coin1.name === coin2.name) {
-        coin1.setMatched(true);
-        coin2.setMatched(true);
-        selectedCoins = [];
-      } else {
-        coin1.setClicked(false);
-        coin2.setClicked(false);
-        selectedCoins = [];
-      }
+      compareCoins(selectedCoins);
     }
   };
 

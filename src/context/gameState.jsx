@@ -35,7 +35,7 @@ export const GameContext = createContext({});
 export default (props) => {
   const [gameState, setGameState] = useState(initialState);
 
-  //Menu Actions
+  //MENU ACTIONS
 
   const setTheme = (theme) => {
     setGameState((state) => {
@@ -72,7 +72,7 @@ export default (props) => {
     });
   };
 
-  //Game Actions
+  //GAME ACTIONS
 
   const nextPlayer = () => {
     setGameState((state) => {
@@ -107,6 +107,7 @@ export default (props) => {
   const reset = () => {
     setGameState((state) => {
       state.reset = true;
+      state.moves = 0;
       return { ...state };
     });
     loadGameGrid();

@@ -1,10 +1,12 @@
-import { useState, useEffect, useContext, useLayoutEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
+import { GameContext } from "./../../context/gameState";
 import classes from "./Timer.module.css";
 
 import ComponentCard from "../ComponentCard";
 
 const Timer = (props) => {
+  const gameState = useContext(GameContext).gameState;
   const [timer, setTimer] = useState({ seconds: 0, minutes: 0, hours: 0 });
 
   const time = `${timer.hours > 0 ? `${timer.hours}:` : ""}${
@@ -30,10 +32,14 @@ const Timer = (props) => {
       setTimer({ ...timer });
     }, 1000);
 
+    if (gameState.reset) {
+      setTimer({ seconds: 0, minutes: 0, hours: 0 });
+    }
+
     return () => {
       clearTimeout(timeoutID);
     };
-  }, [timer]);
+  }, [timer, gameState.reset]);
 
   return (
     <ComponentCard className={classes.timer}>

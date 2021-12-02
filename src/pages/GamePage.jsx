@@ -72,12 +72,16 @@ const GamePage = () => {
           />
         </div>
 
-        {/* <div className={classes["player-container"]}>{players}</div> */}
+        {!gameState.isSinglePlayer && (
+          <div className={classes["player-container"]}>{players}</div>
+        )}
 
-        <div className={classes["player-container"]}>
-          <Timer />
-          <MoveCounter moves={gameState.moves} />
-        </div>
+        {gameState.isSinglePlayer && (
+          <div className={classes["player-container"]}>
+            <Timer />
+            <MoveCounter moves={gameState.moves} />
+          </div>
+        )}
       </section>
     </main>
   );

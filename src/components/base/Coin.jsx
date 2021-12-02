@@ -20,7 +20,7 @@ const Coin = (props) => {
   const [clicked, setClicked] = useState(false);
   const [matched, setMatched] = useState(false);
   const gameState = useContext(GameContext).gameState;
-  const gameActions = useContext(GameContext).updateMovesCounter;
+  const gameActions = useContext(GameContext).gameActions;
 
   const sizeClass = props.sizeClass ? "big" : "";
   const matchedClass = matched ? classes.matched : "";
@@ -37,6 +37,7 @@ const Coin = (props) => {
 
     if (selectedCoins.length === 2) {
       compareCoins(selectedCoins);
+      gameActions.updateMovesCounter();
     }
   };
 

@@ -1,36 +1,14 @@
 import classes from "./List.module.css";
 
 import ComponentCard from "./../ComponentCard";
+import endGameResults from "../../helpers/endGameResults";
 
 const List = (props) => {
-  return (
-    <ul className={`${classes.list} ${props.className}`}>
-      <li>
-        <ComponentCard>
-          <p>Player</p>
-          <p>3</p>
-        </ComponentCard>
-      </li>
-      <li>
-        <ComponentCard>
-          <p>Player</p>
-          <p>3</p>
-        </ComponentCard>
-      </li>
-      <li>
-        <ComponentCard>
-          <p>Player</p>
-          <p>3</p>
-        </ComponentCard>
-      </li>
-      <li>
-        <ComponentCard>
-          <p>Player</p>
-          <p>3</p>
-        </ComponentCard>
-      </li>
-    </ul>
-  );
+  const results = endGameResults(props.players);
+
+  console.log(results);
+
+  return <ul className={`${classes.list} ${props.className}`}></ul>;
 };
 
 export default List;

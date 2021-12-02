@@ -19,21 +19,16 @@ const GamePage = () => {
   const gameState = useContext(GameContext).gameState;
   const gameActions = useContext(GameContext).gameActions;
 
-  const players = [];
-  console.log(gameState.totalPairsLeft);
-
-  for (let i = 0; i <= gameState.numOfPlayers - 1; i++) {
-    const playerScore = gameState.players[i].score;
-    const playerNumber = gameState.players[i].number;
-    players.push(
+  const playerList = gameState.players.map((player, i) => {
+    return (
       <Player
-        player={playerNumber}
         key={i}
-        score={playerScore}
-        active={gameState.currentPlayer === i}
+        score={player.score}
+        number={player.number}
+        active={gameState.currentPlayer + 1 === player.number}
       />
     );
-  }
+  });
 
   return (
     <Fragment>
@@ -75,7 +70,7 @@ const GamePage = () => {
           </div>
 
           {!gameState.isSinglePlayer && (
-            <div className={classes["player-container"]}>{players}</div>
+            <div className={classes["player-container"]}>{playerList}</div>
           )}
 
           {gameState.isSinglePlayer && (

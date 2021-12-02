@@ -19,14 +19,13 @@ const Modal = (props) => {
   const gameState = useContext(GameContext).gameState;
 
   const navigate = useNavigate();
-  const playerScores = gameState.scoreOfPlayer;
 
   return createPortal(
     <div className={classes["modal-container"]}>
       <div className={classes["modal-card"]}>
         <h1>Player 1 Wins!</h1>
         <p>Game over! Here are the results...</p>
-        <List />
+        <List players={gameState.players} />
         <Button
           size="medium"
           color="primary-orange"

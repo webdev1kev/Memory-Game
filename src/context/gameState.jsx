@@ -22,12 +22,7 @@ const initialState = {
   gridSize: "4X4",
   currentPlayer: 0,
   currentGameGrid: [],
-  players: [
-    { score: 0, number: 1 },
-    { score: 0, number: 2 },
-    { score: 0, number: 3 },
-    { score: 0, number: 4 },
-  ],
+  players: [],
   totalPairsLeft: 0,
   isSinglePlayer: true,
   reset: false,
@@ -53,6 +48,12 @@ export default (props) => {
       state.numOfPlayers = number;
       if (number > 1) {
         state.isSinglePlayer = false;
+        state.players = [];
+        for (let i = 0; i <= number - 1; i++) {
+          state.players.push({ score: 0, number: i + 1 });
+        }
+      } else {
+        state.players = [{ score: 0, number: 1 }];
       }
       return { ...state };
     });

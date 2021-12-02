@@ -2,10 +2,9 @@ const generateGrid = (array, amount) => {
   const randomNumberRange = (max, min) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
-
+  let iconsCopy = [...array];
   const pairs = [];
   const firstHalf = [];
-  let iconsCopy = [...array];
 
   //RANDOMIZE firstHalf ARRAY ORDER
 

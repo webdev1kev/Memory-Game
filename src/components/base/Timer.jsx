@@ -14,7 +14,7 @@ const Timer = (props) => {
   }${timer.minutes}:${timer.seconds < 10 ? "0" : ""}${timer.seconds}`;
 
   useEffect(() => {
-    const timeoutID = setTimeout(() => {
+    const timeoutID = setInterval(() => {
       if (timer.minutes === 59 && timer.seconds === 59) {
         timer.seconds = 0;
         timer.minutes = 0;
@@ -37,7 +37,7 @@ const Timer = (props) => {
     }
 
     return () => {
-      clearTimeout(timeoutID);
+      clearInterval(timeoutID);
     };
   }, [timer, gameState.reset]);
 

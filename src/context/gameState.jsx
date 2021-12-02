@@ -27,7 +27,6 @@ const initialState = {
   isSinglePlayer: true,
   reset: false,
   moves: 0,
-  matchedCoins: [],
 };
 
 export const GameContext = createContext({});
@@ -108,6 +107,8 @@ export default (props) => {
     setGameState((state) => {
       state.reset = true;
       state.moves = 0;
+      state.scoreOfPlayer = { 1: 0, 2: 0, 3: 0, 4: 0 };
+      state.currentPlayer = 1;
       return { ...state };
     });
     loadGameGrid();
@@ -115,6 +116,7 @@ export default (props) => {
 
   const newGame = () => {
     setGameState({ ...initialState });
+    reset();
   };
 
   useEffect(() => {

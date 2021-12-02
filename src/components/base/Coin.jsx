@@ -36,8 +36,18 @@ const Coin = (props) => {
     selectedCoins.push({ name: props.name, setClicked, setMatched });
 
     if (selectedCoins.length === 2) {
-      compareCoins(selectedCoins);
-      gameActions.updateMovesCounter();
+      const isMatch = compareCoins(selectedCoins);
+      if (gameState.isSinglePlayer) {
+        gameActions.updateMovesCounter();
+        return;
+      }
+
+      if (!gameState.isSinglePlayer && isMatch) {
+        gameActions.updatePlayerScore();
+        return;
+      } else {
+        gameActions.nextPlayer();
+      }
     }
   };
 

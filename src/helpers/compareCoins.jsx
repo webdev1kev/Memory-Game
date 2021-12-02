@@ -7,12 +7,14 @@ const compareCoins = (coinsArray) => {
     coin1.setMatched(true);
     coin2.setMatched(true);
     selectedCoins = [];
+    return true;
   } else {
     setTimeout(() => {
       coin1.setClicked(false);
       coin2.setClicked(false);
     }, 700);
     selectedCoins = [];
+    return false;
   }
 };
 

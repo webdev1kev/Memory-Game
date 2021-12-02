@@ -21,6 +21,7 @@
   position: absolute;
   top: 0;
   border-radius: inherit;
+  opacity: 0.5;
 }
 
 .cover:hover {

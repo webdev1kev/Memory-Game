@@ -20,9 +20,14 @@ const initialState = {
   currentTheme: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
   numOfPlayers: 1,
   gridSize: "4X4",
-  currentPlayer: 1,
+  currentPlayer: 0,
   currentGameGrid: [],
-  scoreOfPlayer: { 1: 0, 2: 0, 3: 0, 4: 0 },
+  players: [
+    { score: 0, number: 1 },
+    { score: 0, number: 2 },
+    { score: 0, number: 3 },
+    { score: 0, number: 4 },
+  ],
   totalPairsLeft: 0,
   isSinglePlayer: true,
   reset: false,
@@ -75,8 +80,8 @@ export default (props) => {
 
   const nextPlayer = () => {
     setGameState((state) => {
-      if (state.currentPlayer === state.numOfPlayers) {
-        state.currentPlayer = 1;
+      if (state.currentPlayer + 1 === state.numOfPlayers) {
+        state.currentPlayer = 0;
         return { ...state };
       }
 
@@ -89,8 +94,8 @@ export default (props) => {
     setGameState((state) => {
       const currentPlayer = state.currentPlayer;
       state.totalPairsLeft = state.totalPairsLeft - 1;
-      state.scoreOfPlayer[currentPlayer] =
-        state.scoreOfPlayer[currentPlayer] + 1;
+      state.players[currentPlayer].score =
+        state.players[currentPlayer].score + 1;
 
       return { ...state };
     });
@@ -103,20 +108,26 @@ export default (props) => {
     });
   };
 
-  const reset = () => {
+  const restartGame = () => {
     setGameState((state) => {
       state.reset = true;
       state.moves = 0;
-      state.scoreOfPlayer = { 1: 0, 2: 0, 3: 0, 4: 0 };
-      state.currentPlayer = 1;
+      state.players.forEach((player) => {
+        player.score = 0;
+      });
+      state.currentPlayer = 0;
       return { ...state };
     });
     loadGameGrid();
   };
 
   const newGame = () => {
-    setGameState({ ...initialState });
-    reset();
+    setGameState((state) => {
+      state.players.forEach((player) => {
+        player.score = 0;
+      });
+      return { ...state, ...initialState };
+    });
   };
 
   useEffect(() => {
@@ -141,7 +152,7 @@ export default (props) => {
         gameActions: {
           nextPlayer,
           updatePlayerScore,
-          reset,
+          restartGame,
           newGame,
           updateMovesCounter,
         },

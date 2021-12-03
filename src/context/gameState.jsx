@@ -21,6 +21,7 @@ const initialState = {
   numOfPlayers: 1,
   gridSize: "4X4",
   currentPlayer: 0,
+  selectedCoins: [],
   currentGameGrid: [],
   players: [],
   totalPairsLeft: 0,
@@ -112,8 +113,8 @@ export default (props) => {
 
   const updateMovesCounter = () => {
     setGameState((state) => {
-      state.moves = state.moves + 1;
-      return { ...state };
+      const moves = state.moves;
+      return { ...state, moves: moves + 1 };
     });
   };
 
@@ -136,6 +137,7 @@ export default (props) => {
       });
       state.currentPlayer = 0;
       state.timestamp = "";
+      state.selectedCoins = [];
       return { ...state };
     });
     createPlayers();

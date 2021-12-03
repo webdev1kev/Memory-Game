@@ -13,7 +13,8 @@ import Player from "../components/base/Player";
 import Timer from "../components/base/Timer";
 import MoveCounter from "../components/base/MoveCounter";
 import SummaryModal from "../components/frames/Modal";
-import endGameResults from "../helpers/endGameResults";
+
+import { selectedCoins } from "../components/base/Coin";
 
 const GamePage = () => {
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ const GamePage = () => {
                 color={"primary-orange"}
                 onClick={() => {
                   gameActions.restartGame();
+                  selectedCoins.splice(0);
                 }}
               >
                 Restart
@@ -63,6 +65,7 @@ const GamePage = () => {
                 color={"secondary-blue"}
                 onClick={() => {
                   gameActions.newGame();
+                  selectedCoins.splice(0);
                   navigate("/");
                 }}
               >

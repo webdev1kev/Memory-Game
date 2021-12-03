@@ -2,19 +2,10 @@ import { useState, useContext, useEffect } from "react";
 
 import { GameContext } from "../../context/gameState";
 import compareCoins from "../../helpers/compareCoins";
-import { selectedCoins } from "../../helpers/compareCoins";
-
-import bugIcon from "./../../assets/icons/bug.svg";
-import carIcon from "./../../assets/icons/car.svg";
-import flaskIcon from "./../../assets/icons/flask.svg";
-import futbulIcon from "./../../assets/icons/futbol.svg";
-import handSpockIcon from "./../../assets/icons/hand-spock.svg";
-import liraSignIcon from "./../../assets/icons/lira-sign.svg";
-import moonIcon from "./../../assets/icons/moon.svg";
-import snowflakeIcon from "./../../assets/icons/snowflake.svg";
-import sunIcon from "./../../assets/icons/sun.svg";
 
 import classes from "./Coin.module.css";
+
+export const selectedCoins = [];
 
 const Coin = (props) => {
   const [clicked, setClicked] = useState(false);
@@ -33,12 +24,19 @@ const Coin = (props) => {
   const clickHandler = () => {
     setClicked(true);
 
-    selectedCoins.push({ name: props.name, setClicked, setMatched });
+    selectedCoins.push({
+      name: props.name,
+      setClicked,
+      setMatched,
+    });
 
     if (selectedCoins.length === 2) {
       const isMatch = compareCoins(selectedCoins);
+      selectedCoins.splice(0);
+
       if (gameState.isSinglePlayer) {
         gameActions.updateMovesCounter();
+
         if (isMatch) {
           gameActions.reducePairsLeft();
         }

@@ -28,14 +28,15 @@ const Modal = (props) => {
     time: gameState.timestamp,
   };
 
+  const multiplayerHeading = results.tied
+    ? "It's a tie!"
+    : `Player ${results.scoreList[0].number} won!`;
+
   return createPortal(
     <div className={classes["modal-container"]}>
       <div className={classes["modal-card"]}>
-        <h1>
-          {results.tied
-            ? "It's a tie!"
-            : `Player ${results.scoreList[0].number} won!`}
-        </h1>
+        {!gameState.isSinglePlayer && <h1>{multiplayerHeading}</h1>}
+        {gameState.isSinglePlayer && <h1>You did it!</h1>}
         <p>Game over! Here are the results...</p>
         <ResultsList
           scoreList={results.scoreList}

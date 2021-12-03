@@ -15,7 +15,7 @@ const Timer = () => {
     timer.minutes < 10 && timer.hours > 0 ? "0" : ""
   }${timer.minutes}:${timer.seconds < 10 ? "0" : ""}${timer.seconds}`;
 
-  if (gameState.totalPairsLeft === 0 && !timestamped) {
+  if (gameState.totalPairsLeft === 0 && gameState.gameStarted && !timestamped) {
     gameActions.setTimestamp(time);
     setTimestamped(true);
   }

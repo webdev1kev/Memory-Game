@@ -25,6 +25,7 @@ const initialState = {
   players: [],
   totalPairsLeft: 0,
   isSinglePlayer: true,
+  gameStarted: false,
   reset: false,
   moves: 0,
   timestamp: "",
@@ -123,6 +124,7 @@ export default (props) => {
   const startGame = () => {
     createPlayers();
     loadGameGrid();
+    setGameState((state) => ({ ...state, gameStarted: true }));
   };
 
   const restartGame = () => {

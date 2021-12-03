@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import GamePage from "./pages/GamePage";
 import HomePage from "./pages/HomePage";
@@ -11,7 +11,8 @@ const App = () => {
     <GameContextProvider>
       <Routes>
         <Route index element={<HomePage />} />
-        <Route path="game" element={<GamePage />} />
+        <Route path="game/*" element={<GamePage />} />
+        <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
     </GameContextProvider>
   );

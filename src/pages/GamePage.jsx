@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react";
 
 import { GameContext } from "../context/gameState";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Route, Routes, Navigate } from "react-router-dom";
 
 import classes from "./GamePage.module.css";
 
@@ -33,7 +33,14 @@ const GamePage = () => {
 
   return (
     <Fragment>
-      {gameState.totalPairsLeft === 0 && <SummaryModal />}
+      <Routes>
+        {!gameState.gameStarted && (
+          <Route path="" element={<Navigate to="/" />} />
+        )}
+      </Routes>
+      {gameState.totalPairsLeft === 0 && gameState.gameStarted && (
+        <SummaryModal />
+      )}
       <main className={classes.gamepage}>
         <section className={classes.grid}>
           <nav className={classes.navbar}>

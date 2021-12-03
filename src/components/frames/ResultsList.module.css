@@ -1,0 +1,17 @@
+.list {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winner {
+  background-color: var(--dark-blue);
+}
+
+.winner > p {
+  color: var(--white);
+}

@@ -39,11 +39,15 @@ const Coin = (props) => {
       const isMatch = compareCoins(selectedCoins);
       if (gameState.isSinglePlayer) {
         gameActions.updateMovesCounter();
+        if (isMatch) {
+          gameActions.reducePairsLeft();
+        }
         return;
       }
 
       if (!gameState.isSinglePlayer && isMatch) {
         gameActions.updatePlayerScore();
+        gameActions.reducePairsLeft();
         return;
       } else {
         gameActions.nextPlayer();

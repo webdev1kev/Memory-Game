@@ -13,6 +13,7 @@ import Player from "../components/base/Player";
 import Timer from "../components/base/Timer";
 import MoveCounter from "../components/base/MoveCounter";
 import SummaryModal from "../components/frames/Modal";
+import endGameResults from "../helpers/endGameResults";
 
 const GamePage = () => {
   const navigate = useNavigate();

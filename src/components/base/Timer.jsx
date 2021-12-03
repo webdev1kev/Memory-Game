@@ -5,13 +5,20 @@ import classes from "./Timer.module.css";
 
 import ComponentCard from "../ComponentCard";
 
-const Timer = (props) => {
+const Timer = () => {
   const gameState = useContext(GameContext).gameState;
+  const gameActions = useContext(GameContext).gameActions;
   const [timer, setTimer] = useState({ seconds: 0, minutes: 0, hours: 0 });
+  const [timestamped, setTimestamped] = useState(false);
 
   const time = `${timer.hours > 0 ? `${timer.hours}:` : ""}${
     timer.minutes < 10 && timer.hours > 0 ? "0" : ""
   }${timer.minutes}:${timer.seconds < 10 ? "0" : ""}${timer.seconds}`;
+
+  if (gameState.totalPairsLeft === 0 && !timestamped) {
+    gameActions.setTimestamp(time);
+    setTimestamped(true);
+  }
 
   useEffect(() => {
     const timeoutID = setInterval(() => {
@@ -34,6 +41,7 @@ const Timer = (props) => {
 
     if (gameState.reset) {
       setTimer({ seconds: 0, minutes: 0, hours: 0 });
+      setTimestamped(false);
     }
 
     return () => {

@@ -1,5 +1,5 @@
 const endGameResults = (playerScores) => {
-  const results = { scoreList: [], tied: false };
+  const results = {};
 
   const sortedScores = playerScores.sort((a, b) => b.score - a.score);
   const [firstWinner] = sortedScores.splice(0, 1);
@@ -7,9 +7,7 @@ const endGameResults = (playerScores) => {
 
   const playerResults = sortedScores.map((player) => {
     if (player.score === firstWinner.score) {
-      if (!results.tied) {
-        results.tied = true;
-      }
+      results.tied = true;
       player.won = true;
       return player;
     }
@@ -20,6 +18,8 @@ const endGameResults = (playerScores) => {
   playerResults.unshift(firstWinner);
 
   results.scoreList = playerResults;
+
+  return { ...results };
 };
 
 export default endGameResults;

@@ -3,9 +3,10 @@ import { useContext, Fragment } from "react";
 import { useNavigate } from "react-router";
 import { createPortal } from "react-dom";
 
-import List from "../base/List";
+import ResultsList from "./ResultsList";
 import Button from "../base/Button";
 import { GameContext } from "../../context/gameState";
+import endGameResults from "../../helpers/endGameResults";
 
 const modal = document.getElementById("modal");
 const backdrop = document.getElementById("backdrop");
@@ -15,17 +16,33 @@ const Backdrop = () => {
 };
 
 const Modal = (props) => {
-  const gameActions = useContext(GameContext).gameActions;
   const gameState = useContext(GameContext).gameState;
+  const gameActions = useContext(GameContext).gameActions;
 
   const navigate = useNavigate();
+
+  const players = [...gameState.players];
+  const results = endGameResults(players);
+  const singlePlayerResults = {
+    moves: gameState.moves,
+    time: gameState.timestamp,
+  };
 
   return createPortal(
     <div className={classes["modal-container"]}>
       <div className={classes["modal-card"]}>
-        <h1>Player 1 Wins!</h1>
+        <h1>
+          {results.tied
+            ? "It's a tie!"
+            : `Player ${results.scoreList[0].number} won!`}
+        </h1>
         <p>Game over! Here are the results...</p>
-        <List players={gameState.players} />
+        <ResultsList
+          scoreList={results.scoreList}
+          isSinglePlayer={gameState.isSinglePlayer}
+          singlePlayerResults={singlePlayerResults}
+        />
+
         <Button
           size="medium"
           color="primary-orange"

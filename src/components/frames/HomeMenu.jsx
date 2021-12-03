@@ -5,7 +5,7 @@ import { GameContext } from "../../context/gameState";
 import classes from "./HomeMenu.module.css";
 
 import Button from "./../base/Button";
-import ButtonGroup from "./../frames/ButtonGroup";
+import ButtonGroup from "./ButtonGroup";
 
 const buttonGenerator = (buttonNamesArray, onClick) => {
   const buttons = [];
@@ -37,8 +37,6 @@ const HomeMenu = () => {
     menuActions.setGridSize
   );
 
-  console.log(gameState);
-
   return (
     <div className={classes.grid}>
       <p>Select Theme</p>
@@ -68,7 +66,7 @@ const HomeMenu = () => {
 
       <Button
         onClick={() => {
-          menuActions.loadGameGrid();
+          menuActions.startGame();
           navigate("/game", { replace: true });
         }}
         className={classes["start-button"]}

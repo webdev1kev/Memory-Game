@@ -27,42 +27,46 @@ const initialState = {
   isSinglePlayer: true,
   reset: false,
   moves: 0,
+  timestamp: "",
 };
 
 export const GameContext = createContext({});
 
 export default (props) => {
-  const [gameState, setGameState] = useState(initialState);
+  const [gameState, setGameState] = useState({ ...initialState });
 
   //MENU ACTIONS
 
   const setTheme = (theme) => {
     setGameState((state) => {
-      state.currentTheme = state.themes[theme];
-      return { ...state };
+      const themeChosen = state.themes[theme];
+      return { ...state, currentTheme: themeChosen };
     });
   };
 
   const setNumberOfPlayers = (number) => {
     setGameState((state) => {
-      state.numOfPlayers = number;
       if (number > 1) {
         state.isSinglePlayer = false;
-        state.players = [];
-        for (let i = 0; i <= number - 1; i++) {
-          state.players.push({ score: 0, number: i + 1 });
-        }
-      } else {
-        state.players = [{ score: 0, number: 1 }];
       }
-      return { ...state };
+      return { ...state, numOfPlayers: number };
     });
   };
 
   const setGridSize = (grid) => {
+    setGameState((state) => ({ ...state, gridSize: grid }));
+  };
+
+  //GAME ACTIONS
+
+  const createPlayers = () => {
     setGameState((state) => {
-      state.gridSize = grid;
-      return { ...state };
+      const players = [];
+      for (let i = 0; i <= state.numOfPlayers - 1; i++) {
+        players.push({ score: 0, number: i + 1 });
+      }
+
+      return { ...state, players };
     });
   };
 
@@ -77,8 +81,6 @@ export default (props) => {
     });
   };
 
-  //GAME ACTIONS
-
   const nextPlayer = () => {
     setGameState((state) => {
       if (state.currentPlayer + 1 === state.numOfPlayers) {
@@ -91,13 +93,18 @@ export default (props) => {
     });
   };
 
+  const reducePairsLeft = () => {
+    setGameState((state) => {
+      const pairsLeft = state.totalPairsLeft - 1;
+      return { ...state, totalPairsLeft: pairsLeft };
+    });
+  };
+
   const updatePlayerScore = () => {
     setGameState((state) => {
       const currentPlayer = state.currentPlayer;
-      state.totalPairsLeft = state.totalPairsLeft - 1;
       state.players[currentPlayer].score =
         state.players[currentPlayer].score + 1;
-
       return { ...state };
     });
   };
@@ -109,6 +116,15 @@ export default (props) => {
     });
   };
 
+  const setTimestamp = (time) => {
+    setGameState((state) => ({ ...state, timestamp: time }));
+  };
+
+  const startGame = () => {
+    createPlayers();
+    loadGameGrid();
+  };
+
   const restartGame = () => {
     setGameState((state) => {
       state.reset = true;
@@ -117,26 +133,20 @@ export default (props) => {
         player.score = 0;
       });
       state.currentPlayer = 0;
+      state.timestamp = "";
       return { ...state };
     });
+    createPlayers();
     loadGameGrid();
   };
 
   const newGame = () => {
-    setGameState((state) => {
-      state.players.forEach((player) => {
-        player.score = 0;
-      });
-      return { ...state, ...initialState };
-    });
+    setGameState({ ...initialState });
   };
 
   useEffect(() => {
     if (gameState.reset) {
-      setGameState((state) => {
-        state.reset = false;
-        return { ...state };
-      });
+      setGameState((state) => ({ ...state, reset: false }));
     }
   }, [gameState.reset]);
 
@@ -148,7 +158,7 @@ export default (props) => {
           setTheme,
           setNumberOfPlayers,
           setGridSize,
-          loadGameGrid,
+          startGame,
         },
         gameActions: {
           nextPlayer,
@@ -156,6 +166,8 @@ export default (props) => {
           restartGame,
           newGame,
           updateMovesCounter,
+          setTimestamp,
+          reducePairsLeft,
         },
       }}
     >

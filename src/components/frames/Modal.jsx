@@ -80,6 +80,7 @@ const MobileMenu = (props) => {
           color="primary-orange"
           onClick={() => {
             gameActions.restartGame();
+            props.onClick();
           }}
         >
           Restart

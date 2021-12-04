@@ -24,6 +24,8 @@ const HomeMenu = () => {
   const gameState = useContext(GameContext).gameState;
   const menuActions = useContext(GameContext).menuActions;
 
+  console.log(gameState);
+
   const themeButtons = buttonGenerator(
     ["Numbers", "Symbols"],
     menuActions.setTheme

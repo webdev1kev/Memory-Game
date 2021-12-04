@@ -15,7 +15,7 @@ const Backdrop = () => {
   return createPortal(<div className={classes.backdrop}></div>, backdrop);
 };
 
-const Modal = (props) => {
+const Summary = (props) => {
   const gameState = useContext(GameContext).gameState;
   const gameActions = useContext(GameContext).gameActions;
 
@@ -45,7 +45,7 @@ const Modal = (props) => {
         />
 
         <Button
-          size="medium"
+          size="big"
           color="primary-orange"
           onClick={() => {
             gameActions.restartGame();
@@ -54,7 +54,7 @@ const Modal = (props) => {
           Restart
         </Button>
         <Button
-          size="medium"
+          size="big"
           color="secondary-blue"
           onClick={() => {
             navigate("/");
@@ -69,13 +69,53 @@ const Modal = (props) => {
   );
 };
 
-const SummaryModal = () => {
+const MobileMenu = (props) => {
+  const gameActions = useContext(GameContext).gameActions;
+
+  return createPortal(
+    <div className={`${classes["modal-container"]} ${props.className}`}>
+      <div className={`${classes["modal-card"]} ${classes["mobile-menu"]}`}>
+        <Button
+          size="big"
+          color="primary-orange"
+          onClick={() => {
+            gameActions.restartGame();
+          }}
+        >
+          Restart
+        </Button>
+        <Button
+          size="big"
+          color="secondary-blue"
+          onClick={() => {
+            gameActions.newGame();
+          }}
+        >
+          New Game
+        </Button>
+        <Button size="big" color="secondary-blue" onClick={props.onClick}>
+          Resume Game
+        </Button>
+      </div>
+    </div>,
+    modal
+  );
+};
+
+export const SummaryModal = () => {
   return (
     <Fragment>
       <Backdrop />
-      <Modal />
+      <Summary />
     </Fragment>
   );
 };
 
-export default SummaryModal;
+export const MobileMenuModal = (props) => {
+  return (
+    <Fragment>
+      <Backdrop />
+      <MobileMenu onClick={props.onClick} />
+    </Fragment>
+  );
+};

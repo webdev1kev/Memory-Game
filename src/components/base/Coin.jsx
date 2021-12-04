@@ -5,7 +5,7 @@ import compareCoins from "../../helpers/compareCoins";
 
 import classes from "./Coin.module.css";
 
-export const selectedCoins = [];
+let selectedCoins = [];
 
 const Coin = (props) => {
   const [clicked, setClicked] = useState(false);
@@ -53,14 +53,22 @@ const Coin = (props) => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      selectedCoins = [];
+    };
+  }, []);
+
   return (
     <li>
       <button
         className={`${classes["coin-button"]} ${props.className} ${classes[sizeClass]} ${matchedClass}`}
       >
-        <div className={classes["icon-frame"]}>
-          <img src={props.icon} alt="" />
-        </div>
+        {gameState.themeChosen === "Symbols" && (
+          <div className={classes["icon-frame"]}>
+            <img src={props.icon} alt="" />
+          </div>
+        )}
 
         {!clicked && (
           <div onClick={clickHandler} className={classes.cover}></div>

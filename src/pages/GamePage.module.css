@@ -21,13 +21,26 @@
   grid-column: start / end;
 
   display: grid;
-  place-items: center;
+  place-items: start center;
 }
 
 .player-container {
   grid-column: start / end;
-
   display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
+  justify-content: space-around;
+}
+
+.mobile-menu-button {
+  display: none;
+}
+
+@media only screen and (max-width: 450px) {
+  .button-container {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: unset;
+    width: 8rem !important;
+  }
 }

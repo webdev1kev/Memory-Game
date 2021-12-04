@@ -6,7 +6,7 @@ import ComponentCard from "../ComponentCard";
 
 const MoveCounter = (props) => {
   return (
-    <ComponentCard className={classes.moves}>
+    <ComponentCard>
       <p>Moves</p>
       <p>{props.moves}</p>
     </ComponentCard>

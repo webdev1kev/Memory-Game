@@ -9,7 +9,10 @@ const Player = (props) => {
     <ComponentCard
       className={`${classes["player"]} ${props.className} ${activeClass}`}
     >
-      <p className={classes["player-number"]}>Player {`${props.number}`}</p>
+      <p className={classes["player-number"]}>
+        P<span>layer </span>
+        {`${props.number}`}
+      </p>
       <p className={classes["player-score"]}>{props.score}</p>
       {activeClass && <p className={classes["current-turn"]}>CURRENT TURN</p>}
     </ComponentCard>

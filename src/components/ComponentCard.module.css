@@ -2,4 +2,23 @@
   background-color: var(--light-gray-blue);
   border-radius: var(--corner-radius);
   padding: 1rem;
+  height: min-content;
+
+  display: flex;
+  justify-content: space-between;
+  width: clamp(5rem, 20vw, 250px);
+}
+
+@media only screen and (max-width: 376px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .card > p {
+    text-align: center;
+  }
+
+  .card p:nth-child(2) {
+    font-size: 1.5rem;
+  }
 }

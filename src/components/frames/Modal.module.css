@@ -22,15 +22,15 @@
 
 .modal-card {
   background-color: var(--white);
-  padding: 3rem;
+  padding: 2rem;
   border-radius: var(--corner-radius);
-  width: 35vw;
+  width: min(90%, 450px);
+
   text-align: center;
 
   display: grid;
   grid-template-columns: [start] repeat(2, 1fr) [end];
   column-gap: 1rem;
-  z-index: 50;
 }
 
 .modal-card > p,
@@ -48,4 +48,22 @@
 
 .modal-card > button {
   grid-column: span 1;
+}
+
+.mobile-menu {
+  grid-template-columns: unset;
+  place-items: center;
+  row-gap: 2rem;
+}
+
+@media only screen and (max-width: 380px) {
+  .modal-card {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  .modal-card > p,
+  .modal-card > button {
+    margin: 1rem 0 0;
+  }
 }

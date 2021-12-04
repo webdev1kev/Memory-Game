@@ -1,9 +1,9 @@
 .grid {
   background-color: var(--white) !important;
-  width: 30rem;
+
   border-radius: var(--corner-radius);
   padding: 2rem;
-
+  width: 30rem;
   display: grid;
   grid-template-columns: [start] repeat(4, 1fr) [end];
   gap: var(--gap);
@@ -30,4 +30,10 @@
 
 .start-button {
   grid-column: start / end;
+}
+
+@media only screen and (max-width: 376px) {
+  .grid {
+    width: 100%;
+  }
 }

@@ -1,5 +1,4 @@
 .player {
-  width: 20%;
   height: min-content;
   background-color: var(--light-gray-blue);
   position: relative;
@@ -8,9 +7,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
+  /* width: clamp(5rem, 50%, 400px) !important; */
 }
 
 .player-number {
+  color: var(--dark-blue);
   opacity: var(--text-opacity);
 }
 
@@ -42,7 +43,24 @@
 .active,
 .active::before,
 .active > .player-number,
+.active .player-number span,
 .active > .player-score {
   background-color: var(--orange) !important;
   color: var(--white) !important;
+}
+
+@media only screen and (max-width: 771px) {
+  .current-turn {
+    font-size: 0.7rem;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .current-turn {
+    display: none;
+  }
+
+  .player-number span {
+    display: none;
+  }
 }

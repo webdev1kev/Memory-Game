@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import generateGrid from "../../helpers/generateGrid";
-
 import Coin from "../base/Coin";
 
 import classes1 from "./Grid4.module.css";

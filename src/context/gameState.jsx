@@ -17,6 +17,7 @@ const initialState = {
       "anchor",
     ],
   },
+  themeChosen: "",
   currentTheme: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
   numOfPlayers: 1,
   gridSize: "4X4",
@@ -41,6 +42,7 @@ export default (props) => {
 
   const setTheme = (theme) => {
     setGameState((state) => {
+      state.themeChosen = theme;
       const themeChosen = state.themes[theme];
       return { ...state, currentTheme: themeChosen };
     });
@@ -137,7 +139,7 @@ export default (props) => {
       });
       state.currentPlayer = 0;
       state.timestamp = "";
-      state.selectedCoins = [];
+
       return { ...state };
     });
     createPlayers();

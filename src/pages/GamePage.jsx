@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 
 import { GameContext } from "../context/gameState";
 import { useNavigate, Route, Routes, Navigate } from "react-router-dom";
@@ -12,14 +12,13 @@ import Grid from "../components/frames/Grids";
 import Player from "../components/base/Player";
 import Timer from "../components/base/Timer";
 import MoveCounter from "../components/base/MoveCounter";
-import SummaryModal from "../components/frames/Modal";
-
-import { selectedCoins } from "../components/base/Coin";
+import { SummaryModal, MobileMenuModal } from "../components/frames/Modal";
 
 const GamePage = () => {
   const navigate = useNavigate();
   const gameState = useContext(GameContext).gameState;
   const gameActions = useContext(GameContext).gameActions;
+  const [mobileMenuActive, setMobileMenuActive] = useState(false);
 
   const playerList = gameState.players.map((player, i) => {
     return (
@@ -39,6 +38,13 @@ const GamePage = () => {
           <Route path="" element={<Navigate to="/" />} />
         )}
       </Routes>
+      {mobileMenuActive && (
+        <MobileMenuModal
+          onClick={() => {
+            setMobileMenuActive(false);
+          }}
+        />
+      )}
       {gameState.totalPairsLeft === 0 && gameState.gameStarted && (
         <SummaryModal />
       )}
@@ -55,7 +61,6 @@ const GamePage = () => {
                 color={"primary-orange"}
                 onClick={() => {
                   gameActions.restartGame();
-                  selectedCoins.splice(0);
                 }}
               >
                 Restart
@@ -65,13 +70,23 @@ const GamePage = () => {
                 color={"secondary-blue"}
                 onClick={() => {
                   gameActions.newGame();
-                  selectedCoins.splice(0);
+
                   navigate("/");
                 }}
               >
                 New Game
               </Button>
             </div>
+            <Button
+              size="medium"
+              color="primary-orange"
+              className={classes["mobile-menu-button"]}
+              onClick={() => {
+                setMobileMenuActive(true);
+              }}
+            >
+              Menu
+            </Button>
           </nav>
           <div className={classes["coin-container"]}>
             <Grid

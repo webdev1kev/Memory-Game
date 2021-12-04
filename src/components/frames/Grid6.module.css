@@ -4,3 +4,31 @@
   width: min-content;
   gap: 1rem;
 }
+
+@media only screen and (max-width: 510px) {
+  .grid {
+    gap: 0.75rem;
+  }
+
+  .grid button {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  .grid img {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+@media only screen and (max-height: 740px) {
+  .grid button {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  .grid img {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}

@@ -50,7 +50,7 @@ const Timer = () => {
   }, [timer, gameState.reset]);
 
   return (
-    <ComponentCard>
+    <ComponentCard className={classes.timer}>
       <p>Time</p>
       <p>{time}</p>
     </ComponentCard>

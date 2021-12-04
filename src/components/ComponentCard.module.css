@@ -9,6 +9,9 @@
   width: clamp(5rem, 20vw, 250px);
 }
 
+.card {
+}
+
 @media only screen and (max-width: 376px) {
   .card {
     flex-direction: column;
